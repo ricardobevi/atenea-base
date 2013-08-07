@@ -4,8 +4,10 @@ import java.util.HashSet;
 
 public class Node<T> {
 	
+	Integer id;
 	T data;
 	HashSet< Integer > relatedTo;
+
 	
 	public Node(T data){
 		this.data = data;
@@ -20,5 +22,15 @@ public class Node<T> {
 	public void relate( Integer nodeIndex ){
 		relatedTo.add(nodeIndex);
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 }
