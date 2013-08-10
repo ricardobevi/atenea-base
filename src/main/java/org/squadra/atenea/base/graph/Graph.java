@@ -21,10 +21,9 @@ public class Graph<T> {
 	
 	public void addNode(Node<T> node, Integer index){
 		
-		if ( !graph.containsKey(index) ){
-			node.setId(index);
-			graph.put( index, node );
-		}
+
+		node.setId(index);
+		graph.put(index, node);
 		
 	}
 	
@@ -32,17 +31,47 @@ public class Graph<T> {
 		return graph.get(index);
 	}
 	
-	public void relate(Integer index1, Integer index2){
-		graph.get(index1).relate(index2);
+	public boolean relate(Integer index1, Integer index2){
+		boolean canRelate = false;
+		
+		if ( graph.containsKey(index1) && graph.containsKey(index2) ){
+			
+			graph.get(index1).relate(index2);
+			canRelate = true;
+			
+		} else {
+			
+			canRelate = false;
+			
+		}
+		
+		return canRelate;
 	}
 	
 	public String toString() {
-		Gson gson = new Gson();
-		String ret = "";
-
-		ret = gson.toJson(this);
-
-		return ret;
+		
+		String stringObject = new String();
+		
+		stringObject += "<graph>\n";
+		stringObject += "  <properties>\n";
+		stringObject += "    size: " + graph.size() + "\n";
+		stringObject += "  </properties>\n";
+		
+		stringObject += "  <nodes>\n";
+		
+		for( Node<T> node : graph.values() ){
+			stringObject += "    <node key='"+ node.getId() +"'>\n";
+			
+			stringObject += "      " +node.toString();
+			
+			stringObject += "\n    </node>\n\n";
+		}
+		
+		stringObject += "  </nodes>\n";
+		
+		stringObject += "</graph>\n";
+		
+		return stringObject;
 	}
 	
 }
