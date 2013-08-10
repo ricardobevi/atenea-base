@@ -5,39 +5,37 @@ package org.squadra.atenea.base.word;
  * @author Leandro Morrone
  */
 public class WordTypes {
+	
+	public static final String VOID		= "";	// VACIO 		(cuando el campo DEBE estar vacio)
+	public static final String UNKNOWN	= "?";	// DESCONOCIDO 	(cuando esta vacio porque no sabemos que poner)
 
 	public static class Type {
-		/*
-		 * NOTAS: El articulo es devuelto como DET pero hay que cambiarlo a ART para no confundir.
-		 * los demostrativos, posesivos, indefinidos, relativos e interrogativos son DET o INDP
-		 * lo demostrativos pre-nucleo son ARTICULOS y no todos devuelven subtipo U.u
-		 * el CONJ no existe, es KC o KS
-		 * hay algunos con solo INDP, ej "lo mismo". no se donde ponerlo. esperemos que no haya un DET solo.
-		 */
+		
 		public static final String NOUN 					= "N";			// SUSTANTIVO
-		public static final String ARTICLE 					= "ART"; 		// ARTICULO
 		public static final String ADJECTIVE 				= "ADJ";		// ADJETIVO
 		public static final String VERB 					= "V";			// VERBO
 		public static final String PROPER_NAME 				= "PROP";		// NOMBRE PROPIO
-		
+		public static final String ARTICLE 					= "ART"; 		// ARTICULO
 		public static final String PERSONAL_PRONOUN 		= "PERS";		// PRONOMBRE PERSONAL
-		public static final String DEMONSTRATIVE 			= "dem";		// PRONOMBRE DESMOSTRATIVO
-		public static final String POSSESSIVE 				= "poss";		// PRONOMBRE POSESIVO
-		public static final String INDEFINITE 				= "quant";		// PRONOMBRE INDEFINIDO
-		public static final String RELATIVE 				= "rel";		// PRONOMBRE RELATIVO
-		public static final String INTERROGATIVE 			= "interr";		// PRONOMBRE INTERROG/EXCLAMATIVO
+		
+		// Los siguientes tipos abarcan pronombres, adjetivos y algunos adverbios
+		public static final String DEMONSTRATIVE 			= "DEM";		// PRONOMBRE DESMOSTRATIVO
+		public static final String POSSESSIVE 				= "POSS";		// PRONOMBRE POSESIVO
+		public static final String INDEFINITE 				= "QUANT";		// PRONOMBRE INDEFINIDO
+		public static final String RELATIVE 				= "REL";		// PRONOMBRE RELATIVO
+		public static final String INTERROGATIVE 			= "INTERR";		// PRONOMBRE INTERROG/EXCLAMATIVO
 		
 		public static final String ADVERB 					= "ADV";		// ADVERBIO
 		public static final String PREPOSITION 				= "PRP";		// PREPOSICION
-		public static final String NUMERAL 					= "NUM";		// NUMERO
+		public static final String NUMERIC					= "NUM";		// NUMERO
 		public static final String INTERJECTION 			= "IN";			// INTERJECCION
 		public static final String CONJUNCTION 				= "CONJ";		// CONJUNCION
 		
 		public static final String PUNCTUATION				= "PU";			// SIGNO DE PUNTUACION
 		
 		public static class ArticleSubtype {
-			public static final String DETERMINATIVE 		= "artd";		// DETERMINADO
-			public static final String INDETERMINATIVE 		= "arti";		// INDETERMINADO
+			public static final String DEFINITIVE 			= "ADEF";		// DEFINIDO
+			public static final String INDEFINITIVE 		= "AIND";		// INDEFINIDO
 		}
 		
 		public static class PersonalPronounSubtype {
@@ -45,44 +43,22 @@ public class WordTypes {
 			public static final String PREPOSITIONAL 		= "PIV";		// PREPOSICIONAL
 			public static final String DATIVE 				= "DAT"; 		// DATIVO
 			public static final String ACCUSATIVE			= "ACC";		// ACUSATIVO
-			public static final String REFLEXIVE 			= "ACC/DAT";	// REFLEXIVO
-		}
-		
-		public static class NumeralSubtype {
-			public static final String CARDINAL 			= "card";		// CARDINAL
-			public static final String ORDINAL 				= "ord";		// ORDINAL
-			// Los multiplicativos y fraccionarios son ADJ.
+			public static final String REFLEXIVE 			= "REF";		// REFLEXIVO
 		}
 		
 		public static class VerbSubtype {
-			/*
-			 * NOTAS: El CG3 no devuelve esta clasificacion. Se puede extraer de la RAE
-			 */
-			public static final String TRANSITIVE 			= "tr";			// TRANSITIVO	(requiere OD)
-			public static final String INTRANSITIVE 		= "intr";		// INTRANSITIVO	(no requiere OD)
+			public static final String TRANSITIVE 			= "TR";			// TRANSITIVO
+			public static final String INTRANSITIVE 		= "INTR";		// INTRANSITIVO
 		}
 		
 		public static class ConjunctionSubtype {
-			/*
-			 * NOTAS: El CG3 no devuelve esta clasificacion. Se puede extraer de la RAE
-			 */
 			public static final String COORDINATING 		= "KC";			// COORDINADA
 			public static final String SUBORDINATING 		= "KS";			// SUBORDINADA
 		}
 		
 		public static class AdverbSubtype {
-			/*
-			 * NOTAS: el "no, sí, claro, exacto, ciertamente" no tiene subtipo, 
-			 * el "tampoco" dice <setop> WTF? 
-			 * las locuciones adverbiales dicen solo ADV
-			 * 
-			 * LOCATION es aloc y adir
-			 * MODE es amode y amanner, algun ameta, habría que validar los que terminan en mente
-			 * los aneg, aaff y adou no salen del CG3. "etc" es un adverbio y no califica.
-			 */
 			public static final String LOCATION 			= "aloc";		// ADVERBIO DE LUGAR
 			public static final String TIME 				= "atemp";		// ADVERBIO DE TIEMPO
-			public static final String RELATIVE 			= "rel";		// ADVERBIO RELATIVO
 			public static final String MODE		 			= "amod";		// ADVERBIO DE MODO
 			public static final String NEGATION	 			= "aneg";		// ADVERBIO DE NEGACION
 			public static final String AFFIRMATION 			= "aaff";		// ADVERBIO DE AFIRMACION
@@ -93,30 +69,23 @@ public class WordTypes {
 	}
 
 	
-	
 	public static class Gender {
 		
-		public static final String MALE 	= "M";		// MASCULINO
-		public static final String FAMALE 	= "F";		// FEMENINO
-		public static final String NEUTRAL 	= "MF";		// NEUTRO
+		public static final String MALE 		= "M";		// MASCULINO
+		public static final String FAMALE 		= "F";		// FEMENINO
+		public static final String NEUTRAL 		= "MF";		// NEUTRO
 	}
 	
 	public static class Number {
 
-		public static final String SINGULAR = "S";		// SINGULAR
-		public static final String PLURAL 	= "P";		// PLURAL
+		public static final String SINGULAR 	= "S";		// SINGULAR
+		public static final String PLURAL 		= "P";		// PLURAL
+		public static final String INDEFINITE 	= "SP";		// INDEFINIDO (para nombres propios)
 	}
 	
 	public static class Mode {
 
-		/*
-		 * NOTAS: el indicativo y subjuntivo vienen acompañados de VFIN (verbo finito)
-		 * aunque no sirve de nada. 
-		 * Los imperativos, algunos no los reconoce la gramatica, otros aparecen con
-		 * un @FS-COM al final y otros con un IMP acompañado de VFIN.
-		 */
-		
-		public static final String INDICATIVO 	= "IND";	// INDICATIVO	juego
+		public static final String INDICATIVE 	= "IND";	// INDICATIVO	juego
 		public static final String SUBJUNCTIVE 	= "SUBJ";	// SUBJUNTIVO	jugase
 		public static final String IMPERATIVE 	= "IMP";	// IMPERATIVO	juga
 		public static final String INFINITIVE 	= "INF";	// INFINITIVO	jugar
@@ -126,11 +95,6 @@ public class WordTypes {
 	
 	public static class Tense {
 
-		/*
-		 * NOTAS: el condicional viene acompañado del VFIN (en realidad pertenece 
-		 * al modo indicativo)
-		 */
-		
 		public static final String PRESENT			= "PR";		// PRESENTE					juego
 		public static final String PAST_IMPERFECT 	= "IMPF";	// PRET. IMPERFECTO			jugaba
 		public static final String PAST_SIMPLE 		= "PS";		// PRET. PERFECTO SIMPLE	jugue

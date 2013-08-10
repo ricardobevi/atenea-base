@@ -39,10 +39,6 @@ public class Word {
 	/** Heuristica, indica si la clasificacion fue deducida por heuristica */
 	@Getter @Setter private boolean heuristic;
 
-	/*
-	 * TODO: Falta guardar en algun lugar si el verbo es auxiliar o mainverb, los -sam
-	 * que hacemos con las locuciones (ej: a=pesar=de, mientras=que, Estados=Unidos)
-	 */
 	
 	public Word() {}
 	
@@ -64,11 +60,16 @@ public class Word {
 
 	@Override
 	public String toString() {
-		return name + " [" + baseWord + "]\n"
-				+ "   type:   " + type + " | subType:" + subType + "\n"
-				+ "   gender: " + gender + " | number:" + number + "\n"
-				+ "   mode:   " + mode + " | tense:" + tense + " | person:" + person + "\n"
-				+ "   heur:   " + heuristic + "\n";
+		return name + " [" + baseWord + "]"
+				+ "\n |  tipo:     " + type 
+				+ "\n |  subtipo:  " + subType
+				+ "\n |  genero:   " + gender 
+				+ "\n |  numero:   " + number 
+				+ "\n |  modo:     " + mode 
+				+ "\n |  tiempo:   " + tense 
+				+ "\n |  persona:  " + person 
+				+ "\n |  heur:     " + heuristic 
+				+ "\n";
 	}
 
 
