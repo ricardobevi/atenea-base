@@ -2,11 +2,13 @@ package org.squadra.atenea.base.graph;
 
 import java.util.HashSet;
 
-public class Node<T> {
+import lombok.Data;
+
+public @Data class Node<T> {
 	
-	Integer id;
-	T data;
-	HashSet< Integer > relatedTo;
+	private Integer id;
+	private T data;
+	private HashSet< Integer > relatedTo;
 
 	
 	public Node(T data){
