@@ -2,6 +2,11 @@ package org.squadra.atenea.base.word;
 
 import lombok.*;
 
+/**
+ * Clase que contiene una palabra y almacena sus tipos, numero, genero, tiempo verbal, etc.
+ * El utilizada principalmente por el analizador sintactico para formar el arbol sintactico.
+ * @author Leandro Morrone
+ */
 public class Word {
 
 	/** Palabra propiamente dicha */
@@ -31,14 +36,15 @@ public class Word {
 	/** Persona (1ra, 2da o 3ra del singular o plural) */
 	@Getter @Setter private String person;
 	
+	/** Heuristica, indica si la clasificacion fue deducida por heuristica */
+	@Getter @Setter private boolean heuristic;
 
-	public Word() {
-		
-	}
 	
-
+	public Word() {}
+	
 	public Word(String name, String baseWord, String type, String subType,
-			String gender, String number, String mode, String tense, String person) {
+			String gender, String number, String mode, String tense,
+			String person, boolean heuristic) {
 		this.name = name;
 		this.baseWord = baseWord;
 		this.type = type;
@@ -48,6 +54,25 @@ public class Word {
 		this.mode = mode;
 		this.tense = tense;
 		this.person = person;
+		this.heuristic = heuristic;
 	}
+	
+
+	@Override
+	public String toString() {
+		return name + " [" + baseWord + "]"
+				+ "\n |  tipo:     " + type 
+				+ "\n |  subtipo:  " + subType
+				+ "\n |  genero:   " + gender 
+				+ "\n |  numero:   " + number 
+				+ "\n |  modo:     " + mode 
+				+ "\n |  tiempo:   " + tense 
+				+ "\n |  persona:  " + person 
+				+ "\n |  heur:     " + heuristic 
+				+ "\n";
+	}
+
+
+
 	
 }
