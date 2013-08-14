@@ -1,28 +1,34 @@
 package org.squadra.atenea.base.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class Graph<T> {
 
 	private HashMap<Integer, Node<T> > graph;
+	private HashMap<Integer, ArrayList<Integer> > relations;
 	
 	
 	public Graph(){
 		graph = new HashMap<Integer, Node<T> >();
+		relations = new HashMap<Integer, ArrayList<Integer> >();
 	}
 	
 	public void addNode( Node<T> node ){
 		node.setId(graph.size());
 		graph.put( graph.size(), node );
+		
+		relations.put(graph.size(), new ArrayList<Integer>());
 	}
 	
 	public void addNode(Node<T> node, Integer index){
 		
-
 		node.setId(index);
 		graph.put(index, node);
 		
+		relations.put(index, new ArrayList<Integer>());
+				
 	}
 	
 	public Node<T> getNode(Integer index){
@@ -35,6 +41,9 @@ public class Graph<T> {
 		if ( graph.containsKey(index1) && graph.containsKey(index2) ){
 			
 			graph.get(index1).relate(index2);
+			
+			relations.get(index1).add(index2);
+			
 			canRelate = true;
 			
 		} else {
