@@ -2,12 +2,15 @@ package org.squadra.atenea.base.graph;
 
 import java.util.HashMap;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import com.google.gson.Gson;
 
 
 public class Graph<T> {
 
-	private HashMap<Integer, Node<T> > graph;
+	private @Getter @Setter HashMap<Integer, Node<T> > graph;
 	
 	
 	public Graph(){
@@ -20,11 +23,8 @@ public class Graph<T> {
 	}
 	
 	public void addNode(Node<T> node, Integer index){
-		
-
 		node.setId(index);
 		graph.put(index, node);
-		
 	}
 	
 	public Node<T> getNode(Integer index){
@@ -40,9 +40,7 @@ public class Graph<T> {
 			canRelate = true;
 			
 		} else {
-			
 			canRelate = false;
-			
 		}
 		
 		return canRelate;
