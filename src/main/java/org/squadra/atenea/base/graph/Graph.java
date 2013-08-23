@@ -2,9 +2,10 @@ package org.squadra.atenea.base.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import lombok.Data;
 
 
-public class Graph<T> {
+public @Data class Graph<T> {
 
 	private HashMap<Integer, Node<T> > graph;
 	private HashMap<Integer, ArrayList<Integer> > relations;
