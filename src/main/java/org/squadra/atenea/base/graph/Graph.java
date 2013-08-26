@@ -21,9 +21,9 @@ public @Data class Graph<T> {
 		graph = new HashMap<Integer, Node<T> >();
 	}
 	
-	public void addNode( Node<T> node ){
+	public void addNode(Node<T> node){
 		node.setId(graph.size());
-		graph.put( graph.size(), node );
+		graph.put(graph.size(), node);
 	}
 	
 	public void addNode(Node<T> node, Integer index){
@@ -124,6 +124,17 @@ public @Data class Graph<T> {
 		for (Integer relation : node.getInputRelations()) {
 			addNodesToSubGraph(subGraph, relation);
 		}
+	}
+	
+	/**
+	 * Agrega un subgrafo al grafo.
+	 * @param subGraph Subgrafo a agregar
+	 * @param nodeSubGraphIndex Indice del nodo raiz del subgrafo
+	 * @param nodeGraphIndex Indice del nodo del grafo donde se insertara el subgrafo
+	 */
+	public void addSubGraph(Graph<T> subGraph, int nodeSubGraphIndex, int nodeGraphIndex) {
+		this.graph.putAll(subGraph.graph);
+		this.relate(nodeSubGraphIndex, nodeGraphIndex);
 	}
 	
 	
