@@ -1,52 +1,54 @@
 package org.squadra.atenea.base.word;
 
-import lombok.*;
+import lombok.Data;
+
 
 /**
  * Clase que contiene una palabra y almacena sus tipos, numero, genero, tiempo verbal, etc.
  * El utilizada principalmente por el analizador sintactico para formar el arbol sintactico.
  * @author Leandro Morrone
  */
+@Data
 public class Word {
 
 	/** Palabra propiamente dicha */
-	@Getter @Setter private String name;
+	private String name;
 	
 	/** Palabra en formato base (infinitivo, masculino, singular) */
-	@Getter @Setter private String baseWord;
+	private String baseWord;
 	
 	/** Tipo de palabra */
-	@Getter @Setter private String type;
+	private String type;
 
 	/** Subtipo de palabra si el tipo admite otra clasificacion */
-	@Getter @Setter private String subType;
+	private String subType;
 	
 	/** Genero masculino, fenemino o neutro de la palabra */
-	@Getter @Setter private String gender;
+	private String gender;
 	
 	/** Singular o plural */
-	@Getter @Setter private String number;
+	private String number;
 	
 	/** Modo verbal: indicativo, subjuntivo, imperativo, infinitivo, participio, gerundio */
-	@Getter @Setter private String mode;
+	private String mode;
 	
 	/** Tiempo verbal: preterito, presente, futuro, condicional etc. */
-	@Getter @Setter private String tense;
+	private String tense;
 	
 	/** Persona (1ra, 2da o 3ra del singular o plural) */
-	@Getter @Setter private String person;
+	private String person;
 	
 	/** Heuristica, indica si la clasificacion fue deducida por heuristica */
-	@Getter @Setter private boolean heuristic;
+	private boolean heuristic;
 
 	
-	public Word() {}
 	
-	public Word(String name, String baseWord, String type, String subType,
+	public Word(String name, String baseword , String type, String subType,
 			String gender, String number, String mode, String tense,
 			String person, boolean heuristic) {
+		
 		this.name = name;
-		this.baseWord = baseWord;
+		this.baseWord = baseword;
 		this.type = type;
 		this.subType = subType;
 		this.gender = gender;
@@ -57,6 +59,22 @@ public class Word {
 		this.heuristic = heuristic;
 	}
 	
+
+	public Word() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Word(String word) {
+		this.name = word;
+	}
+
+
+	public Word(String name, String type) {
+		this.name = name;
+		this.type = type;
+	}
+
 
 	@Override
 	public String toString() {
@@ -71,8 +89,6 @@ public class Word {
 				+ "\n |  heur:     " + heuristic 
 				+ "\n";
 	}
-
-
-
+	
 	
 }
