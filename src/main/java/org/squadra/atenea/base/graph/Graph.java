@@ -2,7 +2,6 @@ package org.squadra.atenea.base.graph;
 
 import java.util.HashMap;
 
-import com.google.gson.Gson;
 
 
 public class Graph<T> {
