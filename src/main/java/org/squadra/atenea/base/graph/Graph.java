@@ -88,7 +88,7 @@ public @Data class Graph<T> {
 	 * @param distance Distancia al nodo raiz
 	 * @return Lista de nodos
 	 */
-	public ArrayList< Node<T> > getNodesByDistance(int distance) {
+	public ArrayList< Node<T> > getNodesByDistanceToRoot(int distance) {
 		
 		ArrayList<Node<T>> nodes = new ArrayList<Node<T>>();
 		
@@ -135,6 +135,21 @@ public @Data class Graph<T> {
 	public void addSubGraph(Graph<T> subGraph, int nodeSubGraphIndex, int nodeGraphIndex) {
 		this.graph.putAll(subGraph.graph);
 		this.relate(nodeSubGraphIndex, nodeGraphIndex);
+	}
+	
+	/**
+	 * Devuelve los nodos relacionados a un nodo en particular.
+	 * @param nodeIndex Indice del nodo
+	 * @return Lista de nodos relacionados
+	 */
+	public ArrayList< Node<T> > getRelatedNodes(int nodeIndex) {
+		
+		ArrayList<Node<T>> nodes = new ArrayList<Node<T>>();
+		
+		for (Integer nodeRelatedIndex : graph.get(nodeIndex).getInputRelations()) {
+			nodes.add(graph.get(nodeRelatedIndex));
+		}
+		return nodes;
 	}
 	
 	
