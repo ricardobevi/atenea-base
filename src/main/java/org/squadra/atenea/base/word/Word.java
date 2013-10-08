@@ -12,40 +12,43 @@ import lombok.Data;
 public class Word {
 
 	/** Palabra propiamente dicha */
-	private String name;
+	private String name = "";
 	
 	/** Palabra en formato base (infinitivo, masculino, singular) */
-	private String baseWord;
+	private String baseWord = "";
 	
 	/** Tipo de palabra */
-	private String type;
+	private String type = "";
 
 	/** Subtipo de palabra si el tipo admite otra clasificacion */
-	private String subType;
+	private String subType = "";
 	
 	/** Genero masculino, fenemino o neutro de la palabra */
-	private String gender;
+	private String gender = "";
 	
 	/** Singular o plural */
-	private String number;
+	private String number = "";
 	
 	/** Modo verbal: indicativo, subjuntivo, imperativo, infinitivo, participio, gerundio */
-	private String mode;
+	private String mode = "";
 	
 	/** Tiempo verbal: preterito, presente, futuro, condicional etc. */
-	private String tense;
+	private String tense = "";
 	
 	/** Persona (1ra, 2da o 3ra del singular o plural) */
-	private String person;
+	private String person = "";
 	
 	/** Heuristica, indica si la clasificacion fue deducida por heuristica */
-	private boolean heuristic;
+	private boolean heuristic = false;
 
+	/** Heuristica, indica si la clasificacion fue deducida por heuristica */
+	private Integer contraction = 0;
 	
 	
+	// Constructor parametrizado completo
 	public Word(String name, String baseword , String type, String subType,
 			String gender, String number, String mode, String tense,
-			String person, boolean heuristic) {
+			String person, boolean heuristic, Integer contraction) {
 		
 		this.name = name;
 		this.baseWord = baseword;
@@ -57,19 +60,23 @@ public class Word {
 		this.tense = tense;
 		this.person = person;
 		this.heuristic = heuristic;
+		this.contraction = contraction;
 	}
 	
-
+	
+	// Constructor por defecto
 	public Word() {
-		// TODO Auto-generated constructor stub
+		// Deja todos los atributos vacios.
+	}
+
+	
+	// Constructor parametrizado con palabra
+	public Word(String name) {
+		this.name = name;
 	}
 
 
-	public Word(String word) {
-		this.name = word;
-	}
-
-
+	// Constructor parametrizado con palabra y tipo
 	public Word(String name, String type) {
 		this.name = name;
 		this.type = type;
@@ -87,6 +94,7 @@ public class Word {
 				+ "\n |  tiempo:   " + tense 
 				+ "\n |  persona:  " + person 
 				+ "\n |  heur:     " + heuristic 
+				+ "\n |  contract: " + contraction 
 				+ "\n";
 	}
 	
