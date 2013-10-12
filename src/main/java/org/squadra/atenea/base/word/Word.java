@@ -98,5 +98,10 @@ public class Word {
 				+ "\n";
 	}
 	
+	@Override
+	public boolean equals(Object word) {
+		return this.name.toLowerCase().equals( 
+				((Word)word).getName().toLowerCase());
+	}
 	
 }
