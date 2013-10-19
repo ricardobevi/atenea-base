@@ -32,5 +32,20 @@ public class StringUtil {
 	public static String padRight(String str, int positions, char filler) {
 		return String.format("%1$-" + positions + "s", str).replace(' ', filler);
 	}
+	
+
+	public static String replaceAccents(String input) {
+		
+		String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
+	    String ascii = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
+	    String output = new String(input);
+	    
+	    for (int j = 0; j < original.length(); j++) {
+	        output = output.replace(original.charAt(j), ascii.charAt(j));
+	    }
+	    
+	    return output;
+	}
+	
 
 }
