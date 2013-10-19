@@ -5,13 +5,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.squadra.atenea.base.ResourcesActions;
 
 public class Click{
 
@@ -50,24 +48,25 @@ public class Click{
 		}
 	    
 	    
-		return typeOfClick + "||" + pathOfIcon + "||" + baos.toByteArray().toString(); 	
+		return typeOfClick + "||" + baos.toByteArray().toString(); 	
 	}
 	
 	static public Click deserialize(String in)
 	{
 		String[] out = in.split("||");
-
-		ByteArrayInputStream bytes = new ByteArrayInputStream(out[2].getBytes());
+		String iconName  = ResourcesActions.Actions.ICONS_PATH + "icon" + new java.util.Date().getTime() + ".jpg";
+		
+		ByteArrayInputStream bytes = new ByteArrayInputStream(out[1].getBytes());
 		try {
 			BufferedImage image = ImageIO.read(bytes);
-			FileOutputStream file = new FileOutputStream(out[1]);
+			FileOutputStream file = new FileOutputStream(iconName);
 			ImageIO.write(image, "jpg", file);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new Click(out[0], out[1]);
+		return new Click(out[0], iconName);
 	}
 	
 }
