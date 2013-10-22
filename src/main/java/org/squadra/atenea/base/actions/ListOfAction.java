@@ -75,21 +75,7 @@ public class ListOfAction {
 	
 	private void loadActionsAndCommandsFromFiles()
 	{
-		File dir = new File(ResourcesActions.Actions.PATH);
-		if (!dir.exists())
-		{
-			dir.mkdir();
-		}
-
 		File archivo = new File(ResourcesActions.Actions.actions_file);
-		if (!archivo.exists())
-		{
-			try {
-				archivo.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -113,18 +99,7 @@ public class ListOfAction {
 				e.printStackTrace();
 			}
 		}
-
-		File archivoCommands = new File(ResourcesActions.Actions.commands_file);
-		if (!archivoCommands.exists())
-		{
-			try {
-				archivoCommands.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
+	
 		BufferedReader br2 = null;
 		try{
 			br2 = new BufferedReader(new FileReader(ResourcesActions.Actions.commands_file));
@@ -148,6 +123,8 @@ public class ListOfAction {
 	private ListOfAction() {
 		
 		fillPreloadActions();
+		
+		ResourcesActions.buildPaths();
 		
 		loadActionsAndCommandsFromFiles();
 		

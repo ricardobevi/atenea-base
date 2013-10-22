@@ -8,8 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
 import org.squadra.atenea.base.ResourcesActions;
+
+import javax.xml.bind.DatatypeConverter;
 
 public class Click{
 
@@ -37,34 +38,36 @@ public class Click{
 		this.pathOfIcon = pathOfIcon;
 	}
 	
-	public String serialize()
+	public BufferedImage getImage()
 	{
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		BufferedImage image;
-	    try {
-	    	image = ImageIO.read(new File(pathOfIcon));
-			ImageIO.write(image, "jpg", baos);
+		BufferedImage ret = null;
+		try {
+			 ret = ImageIO.read(new File(pathOfIcon));
 		} catch (IOException e) {
 		}
-	    
-	    
-		return typeOfClick + "||" + baos.toByteArray().toString(); 	
+		return ret;
+	}
+	
+	public String serialize()
+	{    
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    try {
+			ImageIO.write(ImageIO.read(new File(pathOfIcon)), "jpg", baos);
+		} catch (IOException e) {
+		}
+	    System.out.println(typeOfClick + "||" + DatatypeConverter.printBase64Binary(baos.toByteArray()));
+		return typeOfClick + "||" + DatatypeConverter.printBase64Binary(baos.toByteArray()); 	
 	}
 	
 	static public Click deserialize(String in)
 	{
-		String[] out = in.split("||");
-		String iconName  = ResourcesActions.Actions.ICONS_PATH + "icon" + new java.util.Date().getTime() + ".jpg";
-		
-		ByteArrayInputStream bytes = new ByteArrayInputStream(out[1].getBytes());
+		String[] out = in.split("\\|\\|");
+		String iconName  = ResourcesActions.Actions.ICONS_PATH + "_icon" + new java.util.Date().getTime() + ".jpg";
+		ByteArrayInputStream bytes = new ByteArrayInputStream(DatatypeConverter.parseBase64Binary(out[1]));
+		System.out.println(iconName +" "+ out[0]);
 		try {
-			BufferedImage image = ImageIO.read(bytes);
-			FileOutputStream file = new FileOutputStream(iconName);
-			ImageIO.write(image, "jpg", file);
-			
+			ImageIO.write(ImageIO.read(bytes), "jpg", new FileOutputStream(iconName));			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return new Click(out[0], iconName);
 	}
