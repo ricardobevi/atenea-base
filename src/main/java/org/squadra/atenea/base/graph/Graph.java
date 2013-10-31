@@ -1,7 +1,7 @@
 package org.squadra.atenea.base.graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import lombok.Data;
 
@@ -14,11 +14,11 @@ import lombok.Data;
  */
 public @Data class Graph<T> {
 
-	private HashMap<Integer, Node<T> > graph;
+	private TreeMap<Integer, Node<T> > graph;
 	
 	
 	public Graph(){
-		graph = new HashMap<Integer, Node<T> >();
+		graph = new TreeMap<Integer, Node<T> >();
 	}
 	
 	public void addNode(Node<T> node){
