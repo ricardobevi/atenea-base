@@ -44,7 +44,8 @@ public class ListOfAction {
 		for (Map.Entry<String, PreloadAction> entry : preloadActions.entrySet()) 
 		{
 		    String preloadAction = entry.getKey();
-		    int posInit = action.toLowerCase().indexOf(preloadAction);
+		    
+		    int posInit = action.toLowerCase().indexOf( preloadAction );
 			if (posInit != -1)
 			{
 		    	String param = action.substring(posInit + preloadAction.length()).trim();
@@ -66,10 +67,13 @@ public class ListOfAction {
 	//Agregar acciones precargadas aca!!
 	private void fillPreloadActions()
 	{
-		preloadActions.put("buscar en google", new SearchInGoogle());
-		preloadActions.put("buscar en internet", new SearchInGoogle());
+		preloadActions.put("buscar google", new SearchInGoogle());
+		preloadActions.put("buscar internet", new SearchInGoogle());
 		preloadActions.put("abrir facebook", new OpenFacebook());
 		preloadActions.put("comenzar dictado", new Dictate());
+		preloadActions.put("dictar", new Dictate());
+		preloadActions.put("buscar youtube", new SearchInYouTube());
+		preloadActions.put("buscar video", new SearchInYouTube());
 
 	}
 	
