@@ -104,4 +104,8 @@ public class Word {
 				((Word)word).getName().toLowerCase());
 	}
 	
+	public String getBaseWord(Object word) {
+		return this.baseWord != null && this.baseWord != ""? this.baseWord : this.name;  
+	}
+	
 }

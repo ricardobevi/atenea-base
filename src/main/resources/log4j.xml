@@ -128,62 +128,75 @@
 
 
 	<logger name="org.aspectj">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="TraceFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.squadra.atenea.ateneaws">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="WsAteneaFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.squadra.atenea.aiengine">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="AiEngineFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.apache.cxf">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="cxfAteneaFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.springframework.data.neo4j">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="WsAteneaFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="javax.servlet">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="DataAccessFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.squadra.atenea.aiengineaccess">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="AiEngineAccessFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.squadra.atenea.dataloader">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="DataLoaderFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<logger name="org.squadra.atenea.data">
-		<level value="debug" />
+		<level value="off" />
 		<appender-ref ref="DataAccessFile" />
 		<appender-ref ref="defualtfile" />
 	</logger>
 
 	<root>
-		<priority value="debug" />
+		<priority value="off" />
 		<appender-ref ref="console" />
 	</root>
 
 </log4j:configuration>
+
+<!-- 
+
+OFF: este es el nivel de mínimo detalle, deshabilita todos los logs.
+FATAL: se utiliza para mensajes críticos del sistema, generalmente después de guardar el mensaje el programa abortará.
+ERROR: se utiliza en mensajes de error de la aplicación que se desea guardar, estos eventos afectan al programa pero lo dejan seguir funcionando, como por ejemplo que algún parámetro de configuración no es correcto y se carga el parámetro por defecto.
+WARN: se utiliza para mensajes de alerta sobre eventos que se desea mantener constancia, pero que no afectan al correcto funcionamiento del programa.
+INFO: se utiliza para mensajes similares al modo "verbose" en otras aplicaciones.
+DEBUG: se utiliza para escribir mensajes de depuración. Este nivel no debe estar activado cuando la aplicación se encuentre en producción.
+TRACE: se utiliza para mostrar mensajes con un mayor nivel de detalle que debug.
+ALL: este es el nivel de máximo detalle, habilita todos los logs (en general equivale a TRACE).
+
+ -->
