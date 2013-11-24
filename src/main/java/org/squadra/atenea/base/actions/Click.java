@@ -8,9 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import org.squadra.atenea.base.ResourcesActions;
-
 import javax.xml.bind.DatatypeConverter;
+
+import org.squadra.atenea.base.ResourcesActions;
 
 public class Click{
 
