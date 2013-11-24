@@ -51,10 +51,10 @@ public class ResourcesActions {
 			try {
 				archivoCommands.createNewFile();
 				FileWriter writer = new FileWriter(Actions.commands_file);
-				writer.write("abrir bloc de notas,notepad.exe\n");
-				writer.write("cerrar bloc de notas,taskkill /IM notepad.exe\n");
-				writer.write("abrir panel de control,control\n");
-				writer.write("abrir administrador de tareas,taskmgr\n");
+				writer.write("abrir bloc notar,notepad.exe\n");
+				writer.write("cerrar bloc notar,taskkill /IM notepad.exe\n");
+				writer.write("abrir panel control,control\n");
+				writer.write("abrir administrar tarea,taskmgr\n");
 				writer.close();
 			} catch (Exception e) {}
 

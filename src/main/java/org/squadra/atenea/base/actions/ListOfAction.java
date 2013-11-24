@@ -20,6 +20,7 @@ public class ListOfAction {
 	private static HashMap<String, List<Click>> clicks ;
 	private static HashMap<String, String> commands = new HashMap<String, String>();
 	private static HashMap<String, PreloadAction> preloadActions= new HashMap<String, PreloadAction>();
+	private static HashMap<String, PreloadAction> preloadActionsWithParam= new HashMap<String, PreloadAction>();
 	private static ListOfAction INSTANCE = null;
 
 
@@ -40,8 +41,13 @@ public class ListOfAction {
 	 */
 	public PreloadAction getPreLoadAction(String action)
 	{
+		return preloadActions.get(action);
+	}
+	
+	public PreloadAction getPreLoadActionWithParam(String action)
+	{
 		
-		for (Map.Entry<String, PreloadAction> entry : preloadActions.entrySet()) 
+		for ( Map.Entry<String, PreloadAction> entry : preloadActionsWithParam.entrySet() ) 
 		{
 		    String preloadAction = entry.getKey();
 		    
@@ -49,7 +55,7 @@ public class ListOfAction {
 			if (posInit != -1)
 			{
 		    	String param = action.substring(posInit + preloadAction.length()).trim();
-		    	// param == "el color del caballo blanco de San Martin"
+		    	entry.getValue().setName(preloadAction);
 		    	return entry.getValue().setParam(param);
 			}
 		}
@@ -67,14 +73,19 @@ public class ListOfAction {
 	//Agregar acciones precargadas aca!!
 	private void fillPreloadActions()
 	{
-		preloadActions.put("buscar google", new SearchInGoogle());
-		preloadActions.put("buscar internet", new SearchInGoogle());
+		preloadActionsWithParam.put("buscar google", new SearchInGoogle());
+		preloadActionsWithParam.put("buscar internet", new SearchInGoogle());
+		preloadActionsWithParam.put("comenzar dictado", new Dictate());
+		preloadActionsWithParam.put("dictar", new Dictate());
+		preloadActionsWithParam.put("buscar youtube", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar video", new SearchInYouTube());
+		
 		preloadActions.put("abrir facebook", new OpenFacebook());
-		preloadActions.put("comenzar dictado", new Dictate());
-		preloadActions.put("dictar", new Dictate());
-		preloadActions.put("buscar youtube", new SearchInYouTube());
-		preloadActions.put("buscar video", new SearchInYouTube());
-
+		
+		commands.put("abrir bloc nota", "notepad.exe");
+		commands.put("cerrar bloc nota", "taskkill /IM notepad.exe");
+		commands.put("abrir panel control", "control");
+		commands.put("abrir administrador tarea", "taskmgr");
 	}
 	
 	private void loadActionsAndCommandsFromFiles()
@@ -104,24 +115,6 @@ public class ListOfAction {
 			}
 		}
 	
-		BufferedReader br2 = null;
-		try{
-			br2 = new BufferedReader(new FileReader(ResourcesActions.Actions.commands_file));
-			String line;
-			while ((line = br2.readLine()) != null) {
-				String a[] = line.split(",");
-				commands.put(a[0], a[1]);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally
-		{
-			try {
-				br2.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	private ListOfAction() {

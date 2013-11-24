@@ -1,7 +1,7 @@
 package org.squadra.atenea.base.actions;
 
-import java.net.*;
 import java.awt.Desktop;
+import java.net.URL;
 
 public class OpenFacebook extends PreloadAction {
 

@@ -3,7 +3,8 @@ package org.squadra.atenea.base.actions;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.event.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class Dictate extends PreloadAction {
 
