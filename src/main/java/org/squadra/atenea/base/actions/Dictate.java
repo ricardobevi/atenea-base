@@ -30,14 +30,15 @@ public class Dictate extends PreloadAction {
 		try {
 			robik = new Robot();
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		byte[] bytes = s.getBytes();
 		for (byte b : bytes) {
 			int code = b;
+			
+			try{
 			System.out.println("Code:" + code);
-			//				// Si la letra es mayuscula, apreto Shift
+			// Si la letra es mayuscula, apreto Shift
 			if (code > 64 && code < 91)
 				robik.keyPress(KeyEvent.VK_SHIFT);
 			if (code > 96 && code < 123) 
@@ -102,28 +103,19 @@ public class Dictate extends PreloadAction {
 				robik.keyPress(code);
 				robik.keyRelease(code);
 			}
+			
+			
 			// Si la letra es mayuscula, suelto Shift
 			if (code > 64 && code < 91)
 				robik.keyRelease(KeyEvent.VK_SHIFT);
+			
+			}catch(Exception e)
+			{
+				System.out.println("error con el caracter " + code);
+			}
 
 		}
 
 	}
 
-	public static void pressUnicode(Robot r, int key_code)
-	{
-		r.keyPress(KeyEvent.VK_ALT);
-
-		for(int i = 3; i >= 0; --i)
-		{
-			// extracts a single decade of the key-code and adds
-			// an offset to get the required VK_NUMPAD key-code
-			int numpad_kc = key_code / (int) (Math.pow(10, i)) % 10 + KeyEvent.VK_NUMPAD0;
-
-			r.keyPress(numpad_kc);
-			r.keyRelease(numpad_kc);
-		}
-
-		r.keyRelease(KeyEvent.VK_ALT);
-	}
 }
