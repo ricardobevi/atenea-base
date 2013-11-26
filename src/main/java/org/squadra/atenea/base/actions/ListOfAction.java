@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,8 @@ public class ListOfAction {
 
 	private static HashMap<String, List<Click>> clicks ;
 	private static HashMap<String, String> commands = new HashMap<String, String>();
-	private static HashMap<String, PreloadAction> preloadActions= new HashMap<String, PreloadAction>();
-	private static HashMap<String, PreloadAction> preloadActionsWithParam= new HashMap<String, PreloadAction>();
+	private static LinkedHashMap<String, PreloadAction> preloadActions= new LinkedHashMap<String, PreloadAction>();
+	private static LinkedHashMap<String, PreloadAction> preloadActionsWithParam= new LinkedHashMap<String, PreloadAction>();
 	private static ListOfAction INSTANCE = null;
 
 
@@ -77,6 +78,8 @@ public class ListOfAction {
 		preloadActionsWithParam.put("buscar internet", new SearchInGoogle());
 		preloadActionsWithParam.put("comenzar dictado", new Dictate());
 		preloadActionsWithParam.put("dictar", new Dictate());
+		preloadActionsWithParam.put("buscar youtube video", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar video youtube", new SearchInYouTube());
 		preloadActionsWithParam.put("buscar youtube", new SearchInYouTube());
 		preloadActionsWithParam.put("buscar video", new SearchInYouTube());
 		
