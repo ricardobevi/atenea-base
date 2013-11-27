@@ -50,7 +50,7 @@ public class ListOfAction {
 		
 		for ( Map.Entry<String, PreloadAction> entry : preloadActionsWithParam.entrySet() ) 
 		{
-		    String preloadAction = entry.getKey();
+		    String preloadAction = entry.getKey().toLowerCase();
 		    
 		    int posInit = action.toLowerCase().indexOf( preloadAction );
 			if (posInit != -1)
@@ -74,14 +74,23 @@ public class ListOfAction {
 	//Agregar acciones precargadas aca!!
 	private void fillPreloadActions()
 	{
-		preloadActionsWithParam.put("buscar google", new SearchInGoogle());
-		preloadActionsWithParam.put("buscar internet", new SearchInGoogle());
-		preloadActionsWithParam.put("comenzar dictado", new Dictate());
-		preloadActionsWithParam.put("dictar", new Dictate());
-		preloadActionsWithParam.put("buscar youtube video", new SearchInYouTube());
-		preloadActionsWithParam.put("buscar video youtube", new SearchInYouTube());
-		preloadActionsWithParam.put("buscar youtube", new SearchInYouTube());
-		preloadActionsWithParam.put("buscar video", new SearchInYouTube());
+		SearchInWiki searchInWiki = new SearchInWiki();
+		SearchInYouTube searchInYouTube = new SearchInYouTube();
+		Dictate dictate = new Dictate();
+		SearchInGoogle searchInGoogle = new SearchInGoogle();
+		
+		preloadActionsWithParam.put("buscar google", searchInGoogle);
+		preloadActionsWithParam.put("buscar internet", searchInGoogle);
+		preloadActionsWithParam.put("comenzar dictado", dictate);
+		preloadActionsWithParam.put("dictar",dictate);
+		preloadActionsWithParam.put("buscar youtube video", searchInYouTube);
+		preloadActionsWithParam.put("buscar video youtube", searchInYouTube);
+		preloadActionsWithParam.put("buscar youtube", searchInYouTube);
+		preloadActionsWithParam.put("buscar video",searchInYouTube);
+		preloadActionsWithParam.put("buscar wikipedia", searchInWiki);
+		preloadActionsWithParam.put("buscar enciclopedia", searchInWiki);
+		preloadActionsWithParam.put("buscar wiki", searchInWiki );
+		
 		
 		preloadActions.put("abrir facebook", new OpenFacebook());
 		
