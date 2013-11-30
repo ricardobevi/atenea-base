@@ -74,26 +74,30 @@ public class ListOfAction {
 	//Agregar acciones precargadas aca!!
 	private void fillPreloadActions()
 	{
-		SearchInWiki searchInWiki = new SearchInWiki();
-		SearchInYouTube searchInYouTube = new SearchInYouTube();
-		Dictate dictate = new Dictate();
-		SearchInGoogle searchInGoogle = new SearchInGoogle();
+		//Buscar en google
+		preloadActionsWithParam.put("buscar google", new SearchInGoogle());
+		preloadActionsWithParam.put("buscar internet", new SearchInGoogle());
+		preloadActionsWithParam.put("comenzar dictado", new Dictate());
+		preloadActionsWithParam.put("dictar",new Dictate());
 		
-		preloadActionsWithParam.put("buscar google", searchInGoogle);
-		preloadActionsWithParam.put("buscar internet", searchInGoogle);
-		preloadActionsWithParam.put("comenzar dictado", dictate);
-		preloadActionsWithParam.put("dictar",dictate);
-		preloadActionsWithParam.put("buscar youtube video", searchInYouTube);
-		preloadActionsWithParam.put("buscar video youtube", searchInYouTube);
-		preloadActionsWithParam.put("buscar youtube", searchInYouTube);
-		preloadActionsWithParam.put("buscar video",searchInYouTube);
-		preloadActionsWithParam.put("buscar wikipedia", searchInWiki);
-		preloadActionsWithParam.put("buscar enciclopedia", searchInWiki);
-		preloadActionsWithParam.put("buscar wiki", searchInWiki );
+		//Buscar en youtube
+		preloadActionsWithParam.put("buscar youtube video", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar youtube vídeo", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar video youtube", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar vídeo youtube", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar youtube", new SearchInYouTube());
+		preloadActionsWithParam.put("buscar video",new SearchInYouTube());
+		preloadActionsWithParam.put("buscar vídeo",new SearchInYouTube());
 		
-		
+		//Buscar en wikipedia
+		preloadActionsWithParam.put("buscar wikipedia", new SearchInWiki());
+		preloadActionsWithParam.put("buscar enciclopedia", new SearchInWiki());
+		preloadActionsWithParam.put("buscar wiki", new SearchInWiki() );
+				
+		//Buscar en facebook
 		preloadActions.put("abrir facebook", new OpenFacebook());
 		
+		//Comandos
 		commands.put("abrir bloc nota", "notepad.exe");
 		commands.put("cerrar bloc nota", "taskkill /IM notepad.exe");
 		commands.put("abrir panel control", "control");
